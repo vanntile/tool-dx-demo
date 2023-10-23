@@ -1,0 +1,49 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+requires-python = ">=3.11"
+name = "demo-presentation"
+description = "SSH demo presentation on CLI UX"
+version = "1.0"
+authors = [
+    { name = "Valentin Ionita", email = "valentin.ionita@ssh.com" },
+]
+dependencies = [
+    "exceptiongroup",
+]
+
+[project.optional-dependencies]
+server = [
+    "fastapi",
+    "uvicorn[standard]",
+]
+client = [
+    "typer[all]",
+]
+dev = [
+    "black",
+    "flake8",
+    "mypy",
+    "mypy-extensions",
+    "pip-tools",
+    "pytest",
+]
+
+[tool.pip-tools]
+generate_hashes = true
+allow_unsafe = true
+
+[tool.black]
+line-length = 120
+
+[tool.mypy]
+check_untyped_defs = true
+disable_error_code = [
+    "assignment",
+]
+enable_error_code = [
+    "ignore-without-code",
+]
+
