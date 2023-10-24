@@ -9,7 +9,7 @@ Port = Annotated[int, Field(ge=0, le=65535)]
 
 class Action(str, Enum):
     ACCEPT_SRC = "ACCEPT_SRC"
-    ACCEPT_DST = "ACCEPT_SDST"
+    ACCEPT_DST = "ACCEPT_DST"
     BLOCK_SRC = "BLOCK_SRC"
     BLOCK_DST = "BLOCK_DST"
     FORWARD = "FORWARD"
