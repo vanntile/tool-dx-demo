@@ -1,15 +1,34 @@
-from typing import Union
+import uuid
 
-from fastapi import FastAPI
+from fastapi import FastAPI, status, HTTPException
+from pydantic import UUID4
+
+from models import Route
 
 app = FastAPI()
 
-
-@app.get("/")
-def read_root():
-    return {"Hello": "World"}
+routes: list[Route] = []
 
 
-@app.get("/items/{item_id}")
-def read_item(item_id: int, q: Union[str, None] = None):
-    return {"item_id": item_id, "q": q}
+@app.get("/routes", response_model=list[Route], status_code=status.HTTP_200_OK)
+def read_routes():
+    return routes
+
+
+@app.post("/routes", response_model=Route, status_code=status.HTTP_201_CREATED)
+def create_route(route: Route):
+    if route.id is not None:
+        raise HTTPException(status_code=432, detail="Route not found")
+
+    route.id = uuid.uuid4()
+    routes.append(route)
+
+    return route
+
+
+@app.get("/routes/{route_id}", response_model=Route, status_code=status.HTTP_200_OK)
+def read_route(route_id: UUID4):
+    for route in routes:
+        if route.id == route_id:
+            return route
+    raise HTTPException(status_code=404, detail="Route not found")

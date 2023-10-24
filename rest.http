@@ -1,0 +1,52 @@
+@baseUrl = http://localhost:8000/routes
+
+#######################################
+
+# @name getRoutes
+GET {{baseUrl}}
+
+###
+# @name createRoute
+POST {{baseUrl}}
+Content-Type: application/json
+
+{
+    "source": "1.1.1.0/24",
+    "source_port": 5432,
+    "action": "BLOCK_SRC" 
+}
+
+###
+# @name getRoute
+@createdRouteID = {{createRoute.response.body.$.id}}
+GET {{baseUrl}}/{{createdRouteID}}
+
+
+### Invalid route 1
+POST {{baseUrl}}
+Content-Type: application/json
+
+{
+    "source": "1.1.1.0/24",
+    "source_port": 5432,
+    "action": "BLOCK_DST" 
+}
+
+### Invalid route 2
+POST {{baseUrl}}
+Content-Type: application/json
+
+{
+    "destination": "1.1.1.0/24",
+    "action": "BLOCK_SRC" 
+}
+
+### Invalid route 3
+POST {{baseUrl}}
+Content-Type: application/json
+
+{
+    "source": "1.1.1.0/24",
+    "source_port": 5432,
+    "action": "FORWARD" 
+}
