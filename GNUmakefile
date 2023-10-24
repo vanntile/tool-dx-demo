@@ -18,10 +18,12 @@ make targets: _N\
 	build-server: Build Docker image for server application. _N\
 	serve: Run server application. _N\
 	build-client: Build Docker image for Typer client application. _N\
-	run-client: Run Typer client Docker image interactively.
+	run-client: Run Typer client Docker image interactively. _N\
+	build-cli: Build Docker image for Gum CLI application. _N\
+	run-cli: Run Gum CLI client Docker image interactively.
 
 .PHONY: help build-local-environment build-local-requirements build-server-requirements \
-	build-client-requirements build-server serve build-client run-client
+	build-client-requirements build-server serve build-client run-client build-cli run-cli
 
 help:
 	@echo $($@) | sed -e 's/ *_N/\n/g' | sed -e 's/^  */  /g'
@@ -51,3 +53,9 @@ build-client:
 
 run-client:
 	@docker run -it --init --rm --network=host -v ./client/:/app demo-client /bin/bash
+
+build-cli:
+	@cd cli && docker build -t demo-cli .
+
+run-cli:
+	@docker run -it --init --rm --network=host -v ./cli/:/app demo-cli /bin/zsh
