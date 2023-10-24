@@ -12,7 +12,7 @@ dependencies = ["exceptiongroup"]
 
 [project.optional-dependencies]
 server = ["fastapi", "uvicorn[standard]"]
-client = ["typer[all]"]
+client = ["typer[all]", "requests"]
 dev = ["black", "flake8", "mypy", "mypy-extensions", "pip-tools", "pytest"]
 
 [tool.pip-tools]
