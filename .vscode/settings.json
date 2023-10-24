@@ -1,0 +1,9 @@
+{
+  "editor.formatOnType": true,
+  "editor.formatOnSave": true,
+  "[python]": {
+    "editor.defaultFormatter": "ms-python.black-formatter",
+    "editor.rulers": [120],
+  },
+  "editor.semanticHighlighting.enabled": true
+}
