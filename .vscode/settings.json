@@ -1,9 +1,12 @@
 {
-  "editor.formatOnType": true,
-  "editor.formatOnSave": true,
   "[python]": {
-    "editor.defaultFormatter": "ms-python.black-formatter",
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "charliermarsh.ruff",
     "editor.rulers": [120],
+    "editor.codeActionsOnSave": {
+      "source.organizeImports.ruff": true
+    }
   },
-  "editor.semanticHighlighting.enabled": true
+  "editor.semanticHighlighting.enabled": true,
+  "python.analysis.autoImportCompletions": true
 }

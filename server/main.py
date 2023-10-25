@@ -1,10 +1,9 @@
 import uuid
 from typing import Annotated
 
-from fastapi import FastAPI, status, HTTPException, Query
-from pydantic import UUID4
-
+from fastapi import FastAPI, HTTPException, Query, status
 from models import Route
+from pydantic import UUID4
 
 app = FastAPI()
 

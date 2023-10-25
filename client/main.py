@@ -1,10 +1,10 @@
 from enum import Enum
-from typing_extensions import Annotated
 from uuid import UUID
 
 import requests
 import typer
 from rich import print
+from typing_extensions import Annotated
 
 
 class Action(str, Enum):
@@ -82,7 +82,7 @@ def create(
                 body["destination_port"] = typer.prompt(text="Port value", type=int)
 
     # Confirm operations
-    print(f"Will send the following route:")
+    print("Will send the following route:")
     print(body)
     typer.confirm("Send route?", abort=True)
 

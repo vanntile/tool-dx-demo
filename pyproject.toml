@@ -13,17 +13,44 @@ dependencies = ["exceptiongroup"]
 [project.optional-dependencies]
 server = ["fastapi", "uvicorn[standard]"]
 client = ["typer[all]", "requests"]
-dev = ["black", "flake8", "mypy", "mypy-extensions", "pip-tools", "pytest"]
+dev = ["ruff", "mypy", "mypy-extensions", "pip-tools", "pytest"]
 
 [tool.pip-tools]
 generate_hashes = true
 allow_unsafe = true
-
-[tool.black]
-line-length = 120
 
 [tool.mypy]
 check_untyped_defs = true
 disable_error_code = ["assignment"]
 enable_error_code = ["ignore-without-code"]
 ignore_missing_imports = true
+
+[tool.ruff]
+exclude = [
+    ".bzr",
+    ".direnv",
+    ".eggs",
+    ".git",
+    ".git-rewrite",
+    ".hg",
+    ".mypy_cache",
+    ".nox",
+    ".pants.d",
+    ".pytype",
+    ".ruff_cache",
+    ".svn",
+    ".tox",
+    ".venv",
+    "__pypackages__",
+    "_build",
+    "buck-out",
+    "build",
+    "dist",
+    "node_modules",
+    "venv",
+]
+extend-include = ["*.ipynb"]
+line-length = 120
+target-version = "py311"
+select = ["E4", "E7", "E9", "F", "B", "I"]
+ignore = ["E203"]

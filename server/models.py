@@ -1,8 +1,8 @@
 from enum import Enum
-from typing_extensions import Annotated
 
-from pydantic import BaseModel, UUID4, Field, model_validator
+from pydantic import UUID4, BaseModel, Field, model_validator
 from pydantic.networks import IPvAnyNetwork
+from typing_extensions import Annotated
 
 Port = Annotated[int, Field(ge=0, le=65535)]
 
