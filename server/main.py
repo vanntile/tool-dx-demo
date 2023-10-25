@@ -13,7 +13,6 @@ routes: list[Route] = []
 
 @app.get("/routes", response_model=list[Route], status_code=status.HTTP_200_OK)
 def read_routes(limit: Annotated[int | None, Query(ge=0)] = None):
-    print(limit)
     if limit is not None:
         return routes[:limit]
     return routes
